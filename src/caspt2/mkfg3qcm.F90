@@ -17,6 +17,7 @@ subroutine mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
   use stdalloc, only:mma_allocate,mma_deallocate
   use qcmaquis_interface
   use definitions, only:wp,iwp,i1
+  use gugx, only:SGS
 
   implicit none
 
@@ -33,7 +34,6 @@ subroutine mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
   Real(kind=wp) :: val
   Integer(kind=iwp) :: t,u,v,w,x,y,z,tu,vx
   Integer(kind=iwp) :: i,n4
-  Integer(kind=iwp) :: ism(nasht)
 
 
   ! number of elements in the contracted 4-index of the 4-RDM
@@ -54,7 +54,7 @@ subroutine mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
   if (iff > 0)then
     do t = 1,nasht
       do u = 1,t
-        if (mul(ism(t),ism(u)) == 1) then
+        if (mul(SGS%ism(t),SGS%ism(u)) == 1) then
           do w = 1,nasht
             F1(t,u) = F1(t,u) + G2(t,u,w,w) * epsa(w)
           end do
@@ -70,7 +70,7 @@ subroutine mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
       do u = 1,nasht
         do v = 1,nasht
           do x = 1,nasht
-            if (mul(ism(x),mul(ism(v),mul(ism(u),ism(t)))) == 1) then
+            if (mul(SGS%ism(x),mul(SGS%ism(v),mul(SGS%ism(u),SGS%ism(t)))) == 1) then
               do w = 1,nasht
                 F2(t,u,v,x) = F2(t,u,v,x) + G3tmp(t,v,w,u,x,w) * epsa(w)
               end do

@@ -534,7 +534,7 @@ C
       Call GETMEM('G3TMP','FREE','REAL',LG3TMP,NLEV4)
 #endif
 
-! kszenes: this should be wrapped in an if statement
+! TODO: @kszenes: this should be wrapped in an if statement
 #ifdef _ENABLE_CHEMPS2_DMRG_
       Call mkfg3chemps2(IFF,NLEV,G1,F1,G2,F2,G3,F3,idxG3)
 #endif
@@ -542,7 +542,7 @@ C
 #ifdef _DMRG_
       if (DMRG) then
         call mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
-      end if
+      endif
 #endif
 
       IF(iPrGlb.GE.DEBUG) THEN
