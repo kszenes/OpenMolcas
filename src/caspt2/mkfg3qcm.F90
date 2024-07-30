@@ -33,6 +33,7 @@ subroutine mkfg3qcm(IFF,G1,F1,G2,F2,G3,F3,idxG3)
   Real(kind=wp) :: val
   Integer(kind=iwp) :: t,u,v,w,x,y,z,tu,vx
   Integer(kind=iwp) :: i,n4
+  Integer(kind=iwp) :: ism(nasht)
 
 
   ! number of elements in the contracted 4-index of the 4-RDM

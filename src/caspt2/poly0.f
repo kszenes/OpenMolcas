@@ -34,7 +34,7 @@
       INTEGER I,IT,ITABS,ILEV,ISYM, iq
 
       if ((.NOT.DoCumulant) .and. (nactel.gt.0) .and. (iscf.eq.0)
-     &      .and. (.not. DoFCIQMC)) Then
+     &      .and. (.not. DoFCIQMC) .and. (.not. DMRG)) Then
 !     if ((.NOT.DoCumulant) .and. (nactel.gt.0)) Then
 
          call sginit_cp2(nSym,iSpin,nActEl,nHole1,nEle3,

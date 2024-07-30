@@ -64,6 +64,14 @@
         goto 99
       end if
 
+#ifdef _DMRG_
+      if (DMRG) then
+        write (6,*) 'DENS1_RPT2> Calculating 1RDM...'
+        call qcmaquis_interface_get_1rdm_full(G1)
+        goto 99
+      end if
+#endif
+
 * For the special cases, there is no actual CI-routines involved:
 * Special code for hi-spin case:
       IF(ISCF.EQ.2) THEN
@@ -162,12 +170,6 @@
       End If
 #endif
 
-#ifdef _DMRG_
-      if (DMRG) then
-        write (6,*) 'DENS1_RPT2> Calculating 1RDM...'
-        call qcmaquis_interface_get_1rdm_full(G1)
-      end if
-#endif
 
       ! DEBUG print while developing DMRG-CASPT2
       ! do i = 1,nLev
