@@ -53,7 +53,7 @@ C first by RAS type, then by symmetry.
         DO IT=1,NASH(ISYM)
           ITABS=ITABS+1
 ! Quan: Bug in LEVEL(ITABS) and L2ACT
-          if (DoCumulant .or. DoFCIQMC) then
+          if (DoCumulant .or. DoFCIQMC .or. DMRG) then
              do iq=1,NLEV
                LEVEL(iq)=iq
                L2ACT(iq)=iq

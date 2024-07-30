@@ -265,12 +265,13 @@ subroutine refwfn_data
           !---  Read the CI coefficients from the HDF5 file
           if (.not. DMRG) then
             call mh5_fetch_dset(refwfn_id,'CI_VECTORS',tmp,[nconf,1],[0,ISNUM-1])
-          endif
-          ! if this is a DMRG calculation we fake the CI array,
-          ! for each state we store a CI array of one element
-          ! on LUCIEX with a 1.0 inside
-          tmp(1) = 1.0_wp
-          call DDAFILE(LUCIEX,1,tmp,NCONF,ID)
+          else
+            ! if this is a DMRG calculation we fake the CI array,
+            ! for each state we store a CI array of one element
+            ! on LUCIEX with a 1.0 inside
+            tmp(1) = 1.0_wp
+            call DDAFILE(LUCIEX,1,tmp,NCONF,ID)
+          end if
         else
 #       endif
           !---  Read the CI coefficients from the JOBIPH file
